@@ -1,15 +1,12 @@
 
 # docker-host
+
+## Fork to stop the image using host.docker.internal as a way of picking the docker host IP. This allows the image itself to run with a network alias of 'host.docker.internal' and therefore can be used on Linux systems as if you were using Docker for Mac.
 Docker image to forward all traffic to the docker host 
-* uses dns entry `host.docker.internal` if available
-* or default gateway as docker host
+* Uses default gateway as docker host
 
 You can manually override the destination IP address by setting the environment variable `DOCKER_HOST`.
 This allows you to use this image to forward traffic to arbitrary destinations, not only the docker host.
-
-[![Build Status](https://travis-ci.com/qoomon/docker-host.svg?branch=master)](https://travis-ci.com/qoomon/docker-host)
-
-[![Docker Stars](https://img.shields.io/docker/pulls/qoomon/docker-host.svg)](https://hub.docker.com/r/qoomon/docker-host/)
 
 
 # Examples
