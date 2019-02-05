@@ -12,11 +12,11 @@ script:
   - DOCKER_TAG=$(if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo ${TRAVIS_BRANCH#v} ; fi)
   - docker run -it --rm -v "$PWD/Dockerfile:/Dockerfile:ro" redcoolbeans/dockerlint
   
-  - docker build -t $TRAVIS_REPO_SLUG:$TRAVIS_COMMIT .
-  - docker tag $TRAVIS_REPO_SLUG:$TRAVIS_COMMIT $TRAVIS_REPO_SLUG:$DOCKER_TAG
+  - docker build -t edwarddobson/docker-host:$TRAVIS_COMMIT .
+  - docker tag edwarddobson/docker-host:$TRAVIS_COMMIT edwarddobson/docker-host:$DOCKER_TAG
   
   - |
     if [ "$TRAVIS_PULL_REQUEST" == "false" ]; then
-      docker login -u "$DOCKER_HUB_USER" -p "$DOCKER_HUB_PASSWORD"
+      docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
       docker push $TRAVIS_REPO_SLUG:$DOCKER_TAG
     fi
